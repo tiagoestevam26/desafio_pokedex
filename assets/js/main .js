@@ -3,20 +3,21 @@ Se for só uma linha de return nem precisa do corpo!!!
 O que vai pro then eh o retorno do then de antes.
 */
 
-function converteTypesparaLi(types){
-    return types.map((typeSlot)=>`<li class="type">${typeSlot.type.name}</li>`)
-}
+const pokemonList = document.getElementById('pokemonList')
+const loadMoreButton = document.getElementById('botaoLoadMore')
+const offset = 0
+let limit = 10
 
 function convertePokemonsParaLi(pokemon){
     return `
-                <li class="pokemon">
-                        <span class="number">${pokemon.order}</span>
+                <li class="pokemon ${pokemon.type}">
+                        <span class="number">${pokemon.number}</span>
                         <span class="name">${pokemon.name}</span>
                         <div class="detail">
                             <ol class="types">
-                                ${converteTypesparaLi(pokemon.types).join('')} 
+                                ${pokemon.types.map((type)=>`<li class="type ${type}">${type}</li>`).join('')} 
                             </ol>
-                            <img src=${pokemon.sprites.other.dream_world.front_default} 
+                            <img src=${pokemon.photo} 
                             alt="${pokemon.name}">
                         </div>
                     </li>
@@ -24,13 +25,26 @@ function convertePokemonsParaLi(pokemon){
     `
 }
 
-const pokemonList = document.getElementById('pokemonList')
+carregaPokemons(offset,limit)
+
+function carregaPokemons(offset, limit){
+    PokeAPI.getPokemons(offset, limit).then(function (pokemons = []){
+        console.log(pokemons)
+        pokemonList.innerHTML = pokemons.map(convertePokemonsParaLi).join('')})
+}
+
+loadMoreButton.addEventListener('click', ()=>{
+    if(limit<150){
+    carregaPokemons(offset, limit)
+    limit += 10
+    }else{
+    limit += 1
+    carregaPokemons(offset, limit)
+    loadMoreButton.parentElement.removeChild(loadMoreButton)
+    }
+})
 
 
-PokeAPI.getPokemons().then(function (pokemons = []){
-
-    console.log(pokemons)
-    pokemonList.innerHTML = pokemons.map(convertePokemonsParaLi).join('')
     
 
     /*  VERSOES DIFERENTES DO MESMO CODIGO
@@ -51,7 +65,7 @@ PokeAPI.getPokemons().then(function (pokemons = []){
     console.log(Lista)
     
     */
-  })
+ 
 
 
 
