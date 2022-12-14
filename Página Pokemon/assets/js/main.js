@@ -1,5 +1,5 @@
 const pokemonHtml = document.getElementById("pokemonHtml");
-const pokemonCode = 100;
+const pokemonCode = 1;
 
 function convertePokemonParaHTML(pokemon) {
   return `
