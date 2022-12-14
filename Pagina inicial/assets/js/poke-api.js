@@ -8,12 +8,12 @@ function converteParaModeloMelhor (pokeDetail){
     pokemon.name = pokeDetail.name
     pokemon.number = pokeDetail.id
     pokemon.types = pokeDetail.types.map((typeSlot)=> typeSlot.type.name)
-    pokemon.type = pokemon.types[0]
+    pokemon.type = pokemon.types[0] 
     pokemon.photo = pokeDetail.sprites.other.dream_world.front_default
     return pokemon
 }
 
-PokeAPI.getPokemonDetail = function(pokemon){
+PokeAPI.getPokemonDetail = function(pokemon){ 
     return fetch(pokemon.url)
     .then((detalhesPokemon)=> detalhesPokemon.json())
     .then(converteParaModeloMelhor)

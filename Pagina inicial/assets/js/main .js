@@ -8,7 +8,7 @@ const loadMoreButton = document.getElementById('botaoLoadMore')
 const offset = 0
 let limit = 10
 
-function convertePokemonsParaLi(pokemon){
+function convertePokemonsParaLi(pokemon){  
     return `
                 <li class="pokemon ${pokemon.type}">
                         <span class="number">${pokemon.number}</span>

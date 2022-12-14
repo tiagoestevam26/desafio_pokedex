@@ -4,6 +4,6 @@ class pokemonn{
     name;
     number;
     types = [];
-    type;
+    type; 
     photo;
-}
+} 

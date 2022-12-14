@@ -3,10 +3,10 @@
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; 
 }
 
-.normal{
+.normal{ 
     background-color:#A8A77A
 }
 .fire{
